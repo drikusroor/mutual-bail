@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model BailEvent {
+  id            String        @id @default(uuid())
+  description   String?
+  status        String        @default("active") // "active" or "cancelled"
+  createdAt     DateTime      @default(now())
+  participants  Participant[]
+  numRequired   Int           // Total number of participants for this event
+}
+
+model Participant {
+  id            String     @id @default(uuid())
+  secret        String     @unique // This is the participant's unique link secret
+  name          String
+  wantsToBail   Boolean    @default(false)
+  bailEventId   String
+  bailEvent     BailEvent  @relation(fields: [bailEventId], references: [id], onDelete: Cascade)
+  createdAt     DateTime   @default(now())
+
+  @@index([bailEventId])
+}
