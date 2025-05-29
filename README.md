@@ -2,6 +2,8 @@
 
 Mutual Bail is a web application that allows users to create, share, and track "bail" events—collaborative commitments where participants can support each other in achieving goals or holding each other accountable. The app is built with Next.js, TypeScript, Tailwind CSS, and Prisma.
 
+![Mutual Bail Screencap](./screencap.gif)
+
 ## Features
 
 - Create a new bail event and invite participants
