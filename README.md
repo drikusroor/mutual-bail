@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mutual Bail
+
+Mutual Bail is a web application that allows users to create, share, and track "bail" events—collaborative commitments where participants can support each other in achieving goals or holding each other accountable. The app is built with Next.js, TypeScript, Tailwind CSS, and Prisma.
+
+## Features
+
+- Create a new bail event and invite participants
+- Share event links easily
+- Track the status of each participant
+- Celebrate successful events with confetti effects
+- Responsive and modern UI
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Prisma ORM](https://www.prisma.io/)
+- [SQLite](https://www.sqlite.org/) (default for development)
+- [React Confetti](https://www.npmjs.com/package/react-confetti)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v18+ recommended)
+- [Bun](https://bun.sh/) (if using Bun, otherwise use npm/yarn)
+- [Prisma CLI](https://www.prisma.io/docs/reference/api-reference/command-reference)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/yourusername/mutual-bail.git
+   cd mutual-bail
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   bun install
+   # or
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Set up the database:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npx prisma migrate dev --name init
+   ```
 
-## Deploy on Vercel
+4. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   bun run dev
+   # or
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+- `app/` - Next.js app directory (routes, API endpoints, pages)
+- `components/` - React components
+- `lib/` - Utility libraries (e.g., Prisma client)
+- `prisma/` - Prisma schema and migrations
+- `public/` - Static assets
+
+## Development
+
+- Edit the Prisma schema in `prisma/schema.prisma` and run `npx prisma migrate dev` to update the database.
+- Add new API routes in `app/api/`.
+- Add or update UI components in `components/`.
+
+## License
+
+MIT
+
+---
+
+Feel free to contribute or open issues for suggestions and bug reports!
