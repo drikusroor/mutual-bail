@@ -154,29 +154,37 @@ export default function BailPage() {
         </div>
       ) : (
         <div className="my-6">
-          <p className="text-xl text-purple-100 mb-4">
-            <span className="font-bold text-pink-300">{numWantingToBail}</span> out of {' '}
-            <span className="font-bold text-purple-300">{totalParticipants}</span> {' '}
-            participant{totalParticipants === 1 ? '' : 's'} want to bail.
-          </p>
-
           {eventData.currentUser.wantsToBail ? (
-            <p className="text-lg text-green-300 bg-green-900/30 p-3 rounded-md">
-              You've requested to bail! Waiting for others...
-            </p>
+            <>
+              <p className="text-xl text-purple-100 mb-4">
+                <span className="font-bold text-pink-300">{numWantingToBail}</span> out of {' '}
+                <span className="font-bold text-purple-300">{totalParticipants}</span> {' '}
+                participant{totalParticipants === 1 ? '' : 's'} want to bail.
+              </p>
+              <p className="text-lg text-green-300 bg-green-900/30 p-3 rounded-md">
+                You've requested to bail! Waiting for others...
+              </p>
+            </>
           ) : (
-            <button
-              onClick={handleBailRequest}
-              disabled={actionLoading}
-              className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-150 ease-in-out transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
-            >
-              {actionLoading ? 'Submitting...' : 'I Secretly Want To Bail!'}
-            </button>
+            <>
+              <button
+                onClick={handleBailRequest}
+                disabled={actionLoading}
+                className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-150 ease-in-out transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+              >
+                {actionLoading ? 'Submitting...' : 'I Secretly Want To Bail!'}
+              </button>
+              <div className="mt-6 text-purple-200/90 text-center text-sm">
+                Status hidden until you decide.
+              </div>
+            </>
           )}
           <div className="mt-6 space-y-1 text-left text-sm text-purple-200/90 max-w-xs mx-auto">
              {eventData.participants.map(p => (
-                 <p key={p.name} className={`p-2 rounded-md ${p.wantsToBail ? 'bg-green-500/20 text-green-300' : 'bg-purple-500/10'}`}>
-                     {p.name}: {p.wantsToBail ? 'Wants to bail ✅' : 'Still in... ⏳'} {p.isCurrentUser ? <span className="text-xs opacity-70">(You)</span> : ''}
+                 <p key={p.name} className={`p-2 rounded-md ${eventData.currentUser.wantsToBail ? (p.wantsToBail ? 'bg-green-500/20 text-green-300' : 'bg-purple-500/10') : 'bg-purple-500/10'}`}>
+                     {p.name}: {eventData.currentUser.wantsToBail
+                       ? (p.wantsToBail ? 'Wants to bail ✅' : 'Still in... ⏳')
+                       : 'Status hidden until you decide'} {p.isCurrentUser ? <span className="text-xs opacity-70">(You)</span> : ''}
                  </p>
              ))}
           </div>
